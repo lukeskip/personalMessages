@@ -1,6 +1,5 @@
 const http = require("http");
 const express = require("express");
-const morgan = require("morgan");
 const server = express();
 const router = require("./routes");
 const path = require("path");
@@ -20,7 +19,10 @@ server.set("views", path.join(__dirname, "views"));
 server.set("view engine", "ejs");
 
 server.use(express.json());
-server.use(morgan("dev"));
+if (NODE_ENV !== "production") {
+  const morgan = require("morgan");
+  app.use(morgan("dev"));
+}
 
 server.use("/", router);
 
