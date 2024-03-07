@@ -1,6 +1,6 @@
 const prompt = (options) => {
   const project = options.project
-    ? `Menciona que encontraste información sobre el projecto ${options.project} y que te interesa participar en ese u otros similares`
+    ? `Menciona que encontraste información sobre ${options.project} y que te interesa participar en ese u otros similares`
     : "";
 
   const style =
