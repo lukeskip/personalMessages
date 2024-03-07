@@ -94,7 +94,7 @@ export default {
     </div>
     <div class="fieldGroup">
       <div>
-        <label for="name">Habilidades:</label>
+        <label for="name">Habilidades(separadas con comas):</label>
         <input type="text" id="name" v-model="formData.skills">
         <span class="errorMessage">{{ errorMessages.skills }}</span>
       </div>
