@@ -11,7 +11,7 @@ export default {
         skills: '',
         style: '',
         project: '',
-        lang: ''
+        lang: 'español'
       },
       errorMessages: {
         receiver: '',
@@ -29,7 +29,7 @@ export default {
     validateForm() {
       let isValid = true;
       for (let key in this.formData) {
-        if (!this.formData[key]) {
+        if (!this.formData[key] &&  key !== 'project') {
           this.errorMessages[key] = 'Este campo es obligatorio';
           isValid = false;
         } else {
@@ -148,6 +148,10 @@ export default {
     background-color: rgb(231, 250, 251);
     padding: 20px;
     flex-grow: 1;
+  }
+
+  .errorMessage{
+    color:rgb(144, 0, 0)
   }
 
 
