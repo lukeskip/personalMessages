@@ -21,7 +21,7 @@ server.set("view engine", "ejs");
 server.use(express.json());
 if (process.env.NODE_ENV !== "production") {
   const morgan = require("morgan");
-  app.use(morgan("dev"));
+  server.use(morgan("dev"));
 }
 
 server.use("/", router);

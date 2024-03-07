@@ -8,7 +8,9 @@ export default {
       formData: {
         receiver: '',
         company: '',
-        skills: '',
+        skills_soft: '',
+        skills_tech: '',
+        values: '',
         style: 'informal',
         project: '',
         lang: 'español'
@@ -16,7 +18,9 @@ export default {
       errorMessages: {
         receiver: '',
         company: '',
-        skills: '',
+        skills_soft: '',
+        skills_tech: '',
+        values: '',
         style: '',
         project: '',
         lang: ''
@@ -39,6 +43,7 @@ export default {
       return isValid;
     },
     async submitForm () {
+      console.log("hola!")
       if(this.validateForm()){
         this.loader=true;
         try {
@@ -49,6 +54,8 @@ export default {
           console.log(error);
         }
         this.loader=false;
+      }else{
+        console.log(this.formData);
       }
       
     },
@@ -56,7 +63,8 @@ export default {
       this.formData = {
         receiver: '',
         company: '',
-        skills: '',
+        skills_tech: '',
+        skills_soft: '',
         style: 'informal',
         project: '',
         lang: 'español'
@@ -66,7 +74,8 @@ export default {
     editForm(){
       console.log("regresa")
       this.messages = "";
-    }
+    },
+    
   },
 }
 </script>
@@ -91,22 +100,31 @@ export default {
         <input type="text" id="name" v-model="formData.company">
         <span class="errorMessage">{{ errorMessages.company }}</span>
       </div>
-    </div>
-    <div class="fieldGroup">
       <div>
-        <label for="name">Habilidades(separadas con comas):</label>
-        <input type="text" id="name" v-model="formData.skills">
-        <span class="errorMessage">{{ errorMessages.skills }}</span>
+        <label for="name">Valores de la empresa (separados por una coma):</label>
+        <input type="text" id="name" v-model="formData.values" placeholder="ej. Excelencia,innovación,Colaboración,Responsabilidad Social">
+        <span class="errorMessage">{{ errorMessages.values }}</span>
       </div>
-    </div>
-    <div class="fieldGroup">
       <div>
-        <label for="name">Proyecto:</label>
+        <label for="name">Proyecto que te interese (opcional):</label>
         <input type="text" id="name" v-model="formData.project">
         <span class="errorMessage">{{ errorMessages.project }}</span>
       </div>
+      
     </div>
-
+    <div class="fieldGroup">
+      <div>
+        <label for="name">Habilidades blandas(separadas con comas):</label>
+        <input type="text" id="name" v-model="formData.skills_soft" placeholder="ej. Resiliencia, pensamiento crítico,trabajo en equipo">
+        <span class="errorMessage">{{ errorMessages.skills_soft }}</span>
+      </div>
+      <div>
+        <label for="name">Habilidades técnicas(separadas con comas):</label>
+        <input type="text" id="name" v-model="formData.skills_tech" placeholder="ej. React, JavaScript, nodeJS">
+        <span class="errorMessage">{{ errorMessages.skills_tech }}</span>
+      </div>
+    </div>
+   
     <div class="fieldGroup">
       <div>
         <label for="name">Idioma:</label>
@@ -127,7 +145,7 @@ export default {
           </select>
       </div>
     </div>
-    <button class="button" type="submit">Enviar</button>
+    <div class="controls"><button class="button" type="submit">Enviar</button></div>
   </form>
     </div>
   
@@ -148,6 +166,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap:20px;
+    margin-top:20px;
+    align-items: center;
+    justify-content: center;
   }
   .fieldGroup{
     display: flex;
@@ -178,6 +199,7 @@ export default {
     flex-grow: 1;
   }
 
+  
   .errorMessage{
     color:rgb(144, 0, 0)
   }

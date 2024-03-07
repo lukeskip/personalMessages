@@ -9,8 +9,13 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const requestMessages = async (req, res) => {
-  const { receiver, company, style, lang, skills } = req.body;
-  if ([receiver, company, style, lang, skills].every((item) => !!item)) {
+  const { receiver, company, style, lang, skills_soft, skills_tech, values } =
+    req.body;
+  if (
+    [receiver, company, style, lang, skills_soft, skills_tech, values].every(
+      (item) => !!item
+    )
+  ) {
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
