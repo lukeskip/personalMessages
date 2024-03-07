@@ -19,7 +19,7 @@ server.set("views", path.join(__dirname, "views"));
 server.set("view engine", "ejs");
 
 server.use(express.json());
-if (NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   const morgan = require("morgan");
   app.use(morgan("dev"));
 }
