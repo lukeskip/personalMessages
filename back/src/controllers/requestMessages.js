@@ -2,7 +2,7 @@ require("dotenv").config();
 const { OpenAI } = require("openai");
 const axios = require("axios");
 const prompt = require("../utils/prompt");
-const max_tokens = 1000;
+const max_tokens = 1200;
 
 const openai = new OpenAI({
   organization: process.env.OPENAI_ORGANIZATION,

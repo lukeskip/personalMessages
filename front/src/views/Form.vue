@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios'
-const HOST = 'http://localhost:3001/'
+const HOST = import.meta.env.VITE_APP_HOST
 
 export default {
   data() {
@@ -9,7 +9,7 @@ export default {
         receiver: '',
         company: '',
         skills: '',
-        style: '',
+        style: 'informal',
         project: '',
         lang: 'español'
       },
@@ -29,7 +29,7 @@ export default {
     validateForm() {
       let isValid = true;
       for (let key in this.formData) {
-        if (!this.formData[key] &&  key !== 'project') {
+        if (!this.formData[key] &&  (key !== 'project' && key!=='style')) {
           this.errorMessages[key] = 'Este campo es obligatorio';
           isValid = false;
         } else {
@@ -51,8 +51,23 @@ export default {
         this.loader=false;
       }
       
+    },
+    resetForm(){
+      this.formData = {
+        receiver: '',
+        company: '',
+        skills: '',
+        style: 'informal',
+        project: '',
+        lang: 'español'
+      }
+      this.messages="";
+    },
+    editForm(){
+      console.log("regresa")
+      this.messages = "";
     }
-  }
+  },
 }
 </script>
 
@@ -104,23 +119,36 @@ export default {
     </div>
 
     <div class="fieldGroup">
-        <div>
-          <label for="rango">Estilo (10 es muy formal):</label>
-          <input type="range" id="rango" name="rango" min="0" max="10" step="1" v-model="formData.style">
-        </div>
+      <div>
+        <label for="">Tono</label>
+        <select name="" id="" v-model="formData.style">
+            <option value="formal">Formal</option>
+            <option value="informal">Informal</option>
+          </select>
+      </div>
     </div>
     <button class="button" type="submit">Enviar</button>
   </form>
     </div>
   
-    <div v-if="messages" class="messages">
+    <div v-if="messages && !loader" class="messages">
       <div class="message" v-for="(item,index) in messages" :key="index">
         {{item}}
+      </div>
+      <div class="controls">
+        <button class="button"  @click="submitForm">Más propuestas</button>
+        <button class="button"  @click="resetForm">Reset</button>
+        <button class="button"  @click="editForm">Editar Información</button>
       </div>
     </div>
 </template>
 <style>
 @import url('../css/loader.css');
+  .controls{
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+  }
   .fieldGroup{
     display: flex;
     flex-wrap: wrap;
