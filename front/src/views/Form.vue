@@ -3,7 +3,7 @@ import axios from 'axios'
 const HOST = import.meta.env.VITE_APP_HOST
 
 export default {
-  data() {
+  data() { 
     return {
       formData: {
         receiver: '',
