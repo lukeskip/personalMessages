@@ -9,7 +9,7 @@
   <div class="container">
 
     <footer>
-      Desarrollado por <a href="https://github.com/lukeskip" target="_blank">Cheko García</a> | Powered by OpenAI
+      Desarrollado por <a href="https://github.com/lukeskip" target="_blank">Sergio Cheko García</a> | Powered by OpenAI
     </footer>
   </div>
 </template>
