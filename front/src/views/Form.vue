@@ -43,7 +43,7 @@ export default {
       return isValid;
     },
     async submitForm () {
-      console.log("hola!")
+      console.log(HOST);
       if(this.validateForm()){
         this.loader=true;
         try {
